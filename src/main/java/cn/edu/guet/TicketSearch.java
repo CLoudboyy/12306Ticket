@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TicketSearch {
-    public static String search(String fromStation,String toStation,String date) throws IOException {
+    public static List<Ticket> search(String fromStation,String toStation,String date) throws IOException {
         Map<String, String> nameCodeMap = new HashMap<String, String>();
         Map<String, String> codeNameMap = new HashMap<String, String>();
 
@@ -25,7 +25,7 @@ public class TicketSearch {
         Matcher matcher = Pattern.compile("((?<=@)[^@]+)").matcher(station_names);
         while (matcher.find()) {
             String tmp = matcher.group();
-            System.out.println(tmp);
+//            System.out.println(tmp);
             String[] contents = tmp.split("\\|");
             String name = contents[1];
             String code = contents[2];
@@ -82,6 +82,6 @@ public class TicketSearch {
 //            System.out.println("--------------------------------------------------------");
         }
 
-        return JSONObject.toJSONString(ticketList);
+        return ticketList;
     }
 }
